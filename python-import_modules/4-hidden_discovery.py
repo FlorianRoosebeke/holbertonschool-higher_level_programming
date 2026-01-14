@@ -4,7 +4,7 @@ import hidden_4
 if __name__ == "__main__":
     
     names = dir(hidden_4)
-    nemes_alpha = sorted(names)
+    names_alpha = sorted(names)
     for name in names_alpha:
         if name.startswith("__"):
             continue
