@@ -1,5 +1,4 @@
 #!/usr/bin/python3
 def no_c(my_string):
-    trsl = str.maketrans('C', 'c', 'C')
-    result = my_string.translate(trsl)
+    result = ''.join([car for car in my_string if car != "c"] and [car for car in my_string if car != "C"])
     return result
