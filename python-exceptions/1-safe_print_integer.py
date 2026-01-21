@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+def safe_print_integer(value):
+    try:
+        if isinstance(value, bool):
+            return False
+        if isinstance(value, int):
+            print("{:d}".format(value))
+            return True
+        else:
+            return False
+    except (ValueError, TypeError):
+        return False
