@@ -20,7 +20,9 @@ def text_indentation(text):
         if char == "." or char == "?" or char == ":":
             print(char)
             print()
+            i += 1
             while i < len(text) and text[i] == " ":
                 i += 1
         else:
             print(char, end='')
+            i += 1
