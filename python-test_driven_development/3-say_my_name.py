@@ -7,7 +7,7 @@ def say_my_name(first_name, last_name=""):
 
     Args:
         first_name (str): First name to print.
-        last_name (str, optional): Last name to print. Defaults to empty string.
+        last_name (str, optional): Last name to print. Default to empty string
 
     Raises:
         TypeError: If first_name is not a string.
