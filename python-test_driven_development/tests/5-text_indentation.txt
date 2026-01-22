@@ -1,0 +1,22 @@
+# Test 1: text is a normal string
+>>> text_indentation("Hello. How are you? Fine: thanks.")
+Hello.
+
+ How are you?
+
+ Fine:
+
+ thanks.
+
+# Test 2: text is not a string
+>>> text_indentation(123)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+# Test 3: text is a string with a blank line
+>>> text_indentation("Line one.\n\nLine two?")
+Line one.
+
+
+
+Line two?
