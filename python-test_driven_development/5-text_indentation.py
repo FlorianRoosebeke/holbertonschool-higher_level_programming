@@ -7,8 +7,6 @@ Prints a text with 2 new lines after each '.', '?', and ':' character.
 
 def text_indentation(text):
     """
-    Prints a text with 2 new lines after each '.', '?', and ':' character.
-
     Args:
         text (str): The text to be printed.
 
@@ -21,5 +19,7 @@ def text_indentation(text):
         if char == "." or char == "?" or char == ":":
             print(char)
             print()
+            while char < len(text) and char == ' ':
+                char += 1
         else:
             print(char, end='')
