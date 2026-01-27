@@ -1,0 +1,1 @@
+CLASS la classe
