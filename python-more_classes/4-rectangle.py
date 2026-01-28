@@ -59,7 +59,7 @@ class Rectangle:
         return (self.__width + self.__height) * 2
 
     def __str__(self):
-        """Return a string representation of the rectangle with # characters."""
+        """Return a string representation of rectangle with # characters."""
         if self.width == 0 or self.height == 0:
             return ''
         lignes = ["#" * self.__width for _ in range(self.__height)]
