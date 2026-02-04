@@ -1,9 +1,68 @@
-class BaseGeometry:
-    def area(self):
-        raise Exception("area() is not implemented")
+===========================
+How to use 7-base_geometry
+===========================
 
-    def integer_validator(self, name, value):
-          if not isinstance(value, int):
-           raise TypeError(f"{name} must be an integer")
-          if value <= 0:
-           raise ValueError(f"{name} must be greater than 0")
+This is a doctest for BaseGeometry class with integer_validator method.
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Test area() method raises exception:
+>>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+Test integer_validator with valid integer:
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("width", 10)
+
+Test integer_validator with non-integer (string):
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("width", "10")
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+Test integer_validator with non-integer (float):
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("height", 10.5)
+Traceback (most recent call last):
+    ...
+TypeError: height must be an integer
+
+Test integer_validator with non-integer (list):
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("size", [1, 2, 3])
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+Test integer_validator with zero value:
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("width", 0)
+Traceback (most recent call last):
+    ...
+ValueError: width must be greater than 0
+
+Test integer_validator with negative value:
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("height", -5)
+Traceback (most recent call last):
+    ...
+ValueError: height must be greater than 0
+
+Test integer_validator with positive integer:
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("width", 100)
+
+Test integer_validator with True (which is an int in Python):
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("test", True)
+
+Test integer_validator with False:
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("test", False)
+Traceback (most recent call last):
+    ...
+ValueError: test must be greater than 0
