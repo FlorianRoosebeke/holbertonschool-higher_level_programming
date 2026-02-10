@@ -3,4 +3,5 @@ import json
 
 
 def load_from_json_file(filename):
-    json.dumps(filename.__dict__)
+    with open(filename, 'r') as f:
+        return json.load(f)
