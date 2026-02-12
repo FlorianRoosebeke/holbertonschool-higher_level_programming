@@ -1,5 +1,16 @@
 #!/usr/bin/python3
-"""Script to add command-line arguments to a JSON file as list items."""
+"""Script that adds all arguments to a Python list and saves them to a JSON file.
+
+This script loads existing items from 'add_item.json', appends any command-line
+arguments provided, and saves the updated list back to the JSON file.
+
+Usage:
+    python3 7-add_item.py [item1] [item2] [item3] ...
+
+Examples:
+    python3 7-add_item.py first second third
+    python3 7-add_item.py "hello world"
+"""
 import json
 from sys import argv
 
