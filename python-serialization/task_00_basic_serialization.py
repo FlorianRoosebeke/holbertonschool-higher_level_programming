@@ -1,27 +1,17 @@
 #!/usr/bin/python3
+"""Module for basic serialization with JSON."""
+
 import json
 import pickle
 
 
 def serialize_and_save_to_file(data, filename):
-    """Serialize and save data to a file using pickle.
-
-    Args:
-        data: The data to serialize.
-        filename: The filename to save to.
-    """
+    """Serialize and save data to a file using pickle."""
     with open(filename, "wb") as f:
         pickle.dump(data, f)
 
 
 def load_and_deserialize(filename):
-    """Load and deserialize data from a pickle file.
-
-    Args:
-        filename: The filename to load from.
-
-    Returns:
-        The deserialized data.
-    """
+    """Load and deserialize data from a pickle file."""
     with open(filename, "rb") as f:
         return pickle.load(f)
