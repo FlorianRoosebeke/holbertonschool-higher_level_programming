@@ -9,8 +9,7 @@ load_from_json_file = __import__(
 
 try:
     my_list = load_from_json_file('add_item.json')
-except:
-    FileNotFoundError
+except FileNotFoundError:
     my_list = []
 
 my_list.extend(argv[1:])
