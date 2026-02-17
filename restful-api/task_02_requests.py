@@ -1,0 +1,29 @@
+import requests
+import csv
+import json
+
+
+def fetch_and_print_posts():
+
+    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    data = response.json()
+    print(f"Status Code: {response.status_code}")
+
+    if response.status_code == 200:
+        for d in data:
+            print(d["title"])
+
+
+def fetch_and_save_posts():
+    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    data = response.json()
+    print(f"Status Code: {response.status_code}")
+
+    if response.status_code == 200:
+        with open('posts.csv', 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f)
+            writer.writerows(data)
+
+
+fetch_and_print_posts()
+fetch_and_save_posts()
