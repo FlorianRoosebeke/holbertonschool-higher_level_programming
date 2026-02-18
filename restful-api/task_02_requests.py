@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Fetch posts from JSONPlaceholder and print/save them."""
 
 import requests
