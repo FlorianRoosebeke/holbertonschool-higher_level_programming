@@ -1,13 +1,16 @@
 #!/usr/bin/python3
-"""Fetch posts from JSONPlaceholder and print/save them."""
+"""Simple HTTP server exposing a few JSON/text endpoints."""
 
 import http.server
 import socketserver
 import json
 
+
 class Handler(http.server.SimpleHTTPRequestHandler):
+    """HTTP handler for a small JSON/text API."""
 
     def do_GET(self):
+        """Serve the API responses for known endpoints."""
         if self.path == "/":
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
@@ -22,18 +25,20 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(data_set).encode("utf8"))
 
         elif self.path == "/info":
-            data_info = {"version": "1.0", "description": "A simple API built with http.server"}
+            data_info = {"version": "1.0",
+                         "description": "A simple API built with http.server"}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(data_info).encode("utf8"))
-        
+
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"Endpoint not found")
-            
+
+
 PORT = 8000
 
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
