@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Basic auth and JWT protected API endpoints."""
 
 from flask import Flask
 from flask import jsonify
@@ -29,6 +30,7 @@ users = {
 
 @auth.verify_password
 def verify_password(username, password):
+    """Validate basic auth credentials."""
     if username in users:
         password_hash = users[username]["password"]
         if check_password_hash(password_hash, password):
@@ -39,11 +41,13 @@ def verify_password(username, password):
 @app.route('/')
 @auth.login_required
 def index():
+    """Return a basic-auth greeting."""
     return "Hello, {}!".format(auth.username())
 
 
 @app.route("/login", methods=["POST"])
 def login():
+    """Authenticate user and return a JWT token."""
     if request.is_json:
         data = request.get_json()
     else:
@@ -64,6 +68,7 @@ def login():
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
+    """Allow access only for admin users."""
     current_user = get_jwt_identity()
     user = users.get(current_user)
     if not user or user.get("role") != "admin":
@@ -74,32 +79,38 @@ def admin_only():
 @app.route("/jwt-protected", methods=["GET"])
 @jwt_required()
 def protected():
+    """Return a JWT-protected greeting."""
     current_user = get_jwt_identity()
     return "JWT Auth: Access Granted for {}".format(current_user)
 
 
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
+    """Handle missing or invalid JWT token."""
     return jsonify({"error": "Missing or invalid token"}), 401
 
 
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
+    """Handle invalid JWT token."""
     return jsonify({"error": "Invalid token"}), 401
 
 
 @jwt.expired_token_loader
 def handle_expired_token_error(err):
+    """Handle expired JWT token."""
     return jsonify({"error": "Token has expired"}), 401
 
 
 @jwt.revoked_token_loader
 def handle_revoked_token_error(err):
+    """Handle revoked JWT token."""
     return jsonify({"error": "Token has been revoked"}), 401
 
 
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(err):
+    """Handle JWT token that is not fresh."""
     return jsonify({"error": "Fresh token required"}), 401
 
 
