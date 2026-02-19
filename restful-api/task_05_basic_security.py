@@ -43,11 +43,11 @@ def verify_password(username, password):
     return None
 
 
-@app.route('/')
+@app.route("/basic-protected")
 @auth.login_required
 def index():
     """Return a basic-auth greeting."""
-    return "Hello, {}!".format(auth.username())
+    return "Basic Auth: Access Granted"
 
 
 @app.route("/login", methods=["POST"])
@@ -57,8 +57,8 @@ def login():
         data = request.get_json()
     else:
         data = {}
-    username = data.get('username')
-    password = data.get('password')
+    username = data.get("username")
+    password = data.get("password")
     if not username or not password:
         return jsonify({"error": "Username and password required"}), 400
 
@@ -78,7 +78,7 @@ def admin_only():
     user = users.get(current_user)
     if not user or user.get("role") != "admin":
         return jsonify({"error": "Admin access required"}), 403
-    return "OK"
+    return "Admin Access: Granted"
 
 
 @app.route("/jwt-protected", methods=["GET"])
@@ -86,7 +86,7 @@ def admin_only():
 def protected():
     """Return a JWT-protected greeting."""
     current_user = get_jwt_identity()
-    return "JWT Auth: Access Granted for {}".format(current_user)
+    return "JWT Auth: Access Granted"
 
 
 @jwt.unauthorized_loader
