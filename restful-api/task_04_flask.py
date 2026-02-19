@@ -41,12 +41,12 @@ def get_profil(username):
 @app.route('/add_user', methods=['POST'])
 def post_adduser():
     """Add a new user to the database."""
-    try:
-        data = request.get_json()
-    except (TypeError, ValueError):
+    data = request.get_json()
+
+    if data is None:
         return jsonify({"error": "Invalid JSON"}), 400
 
-    if not data or "username" not in data:
+    if "username" not in data:
         return jsonify({"error": "Username is required"}), 400
 
     username = data.get("username")
