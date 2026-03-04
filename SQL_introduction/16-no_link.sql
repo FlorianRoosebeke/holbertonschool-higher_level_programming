@@ -1,3 +1,4 @@
+-- Lists score and name where name is not NULL or empty.
 -- List score and name from second_table where name is not NULL, ordered by score descending.
 SELECT score, name
 FROM second_table

@@ -1,3 +1,4 @@
+-- Counts rows by score in second_table.
 -- List the number of records with the same score in second_table, sorted by count descending.
 SELECT score, COUNT(*) AS number
 FROM second_table
