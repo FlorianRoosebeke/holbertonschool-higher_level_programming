@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""List all states from the database."""
+"""List all states with names starting with N from the given database."""
 
 import MySQLdb
 import sys
 
 
-def main():
-    """Run the SQL query and print results."""
+if __name__ == "__main__":
     user = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -21,18 +20,13 @@ def main():
 
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    cursor.execute(
+        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC")
 
     states = cursor.fetchall()
 
     for state in states:
-        if state.startswith("N"):
-            print(state)
+        print(state)
 
     cursor.close()
     db.close()
-
-
-if __name__ == "__main__":
-    main()
-
