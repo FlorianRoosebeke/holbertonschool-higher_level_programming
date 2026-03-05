@@ -15,6 +15,7 @@ if __name__ == "__main__":
         user=username,
         passwd=password,
         db=database
+        charset="utf8"
     )
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
