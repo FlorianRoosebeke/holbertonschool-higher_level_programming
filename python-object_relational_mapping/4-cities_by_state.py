@@ -12,8 +12,10 @@ def main():
     db = MySQLdb.connect(host='localhost', port=3306, user=username,
                          passwd=password, db=database)
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM cities"
-                   " ORDER BY id ASC",)
+    cursor.execute("SELECT cities.id, cities.name, states.name"
+                   " FROM cities"
+                   " JOIN states ON cities.state_id = states.id"
+                   " ORDER BY cities.id ASC")
     states = cursor.fetchall()
     for state in states:
         print(state)
