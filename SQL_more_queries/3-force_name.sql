@@ -1,4 +1,4 @@
--- Creates MySQL user user_0d_1 with all privileges.
+-- Creates the table force_name with a mandatory name field.
 CREATE TABLE IF NOT EXISTS force_name
 (
 id INT,
