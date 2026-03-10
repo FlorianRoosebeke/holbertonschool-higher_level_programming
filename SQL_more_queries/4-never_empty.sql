@@ -1,4 +1,4 @@
--- Creates MySQL user user_0d_1 with all privileges.
+-- Creates the table id_not_null with a default value on id.
 CREATE TABLE IF NOT EXISTS id_not_null
 (
 id INT DEFAULT 1,
