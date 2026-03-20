@@ -4,6 +4,6 @@ const myObject = {
     value: 12
 };
 console.log(myObject);
-myObject.type = 89;
+myObject.type = "object";
 myObject.value = 89;
 console.log(myObject);
